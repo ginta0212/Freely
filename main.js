@@ -36,13 +36,14 @@ async function ensureUserProfile() {
   }
 }
 
-loginBtn.onclick = async () => {
-  username = usernameInput.value.trim();
-  if (!username) return alert("名前入れろや！");
+async function showChat() {
   loginDiv.style.display = "none";
   chatDiv.style.display = "block";
+  await ensureUserProfile(); // ← ここ追加
   loadMessages();
   subscribeMessages();
+}
+
 };
 
 async function loadMessages() {
