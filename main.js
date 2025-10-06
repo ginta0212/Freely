@@ -1,7 +1,7 @@
+// SupabaseのURLとAnonキーを自分のに置き換える
 const SUPABASE_URL = "https://nergelpflnjacforslao.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5lcmdlbHBmbG5qYWNmb3JzbGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2ODk4OTgsImV4cCI6MjA3NTI2NTg5OH0.NeB2bD5PM6z8RtYRGqlc0QKXmUI1CSHKZtTFYRpIBGE";
-
-const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // HTML要素
 const loginDiv = document.getElementById("login");
@@ -21,8 +21,11 @@ async function init() {
   const { data } = await supabase.auth.getSession();
   if (data.session) showChat();
   supabase.auth.onAuthStateChange((_event, session) => {
-    if (session) showChat();
-    else showLogin();
+    if (session) {
+      showChat();
+    } else {
+      showLogin();
+    }
   });
 }
 
@@ -46,10 +49,11 @@ loginBtn.onclick = async () => {
   if (!email || !password) return alert("メールとパスワードを入れてね");
 
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
   if (error && error.message.includes("Invalid login credentials")) {
     const { error: signUpError } = await supabase.auth.signUp({ email, password });
     if (signUpError) alert("登録失敗: " + signUpError.message);
-    else alert("登録完了！メール確認してね。");
+    else alert("登録完了！メールを確認してね。");
   } else if (error) {
     alert("エラー: " + error.message);
   }
@@ -65,10 +69,11 @@ async function ensureUserProfile() {
   const { data: userData } = await supabase.auth.getUser();
   const user = userData.user;
   if (!user) return;
+
   await supabase.from("profiles").upsert({
     id: user.id,
     username: user.email,
-    avatar_url: null,
+    avatar_url: null
   });
 }
 
@@ -92,8 +97,10 @@ sendBtn.onclick = async () => {
   const { data: userData } = await supabase.auth.getUser();
   const user = userData.user;
   if (!user) return alert("ログインしてね！");
+
   const content = msgInput.value.trim();
   if (!content) return;
+
   msgInput.value = "";
   await supabase.from("messages").insert({
     username: user.email,
@@ -101,7 +108,7 @@ sendBtn.onclick = async () => {
   });
 };
 
-// リアルタイム
+// リアルタイム購読
 function subscribeMessages() {
   supabase
     .channel("public:messages")
