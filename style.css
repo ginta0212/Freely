@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+  background: #0e0e10;
+  color: white;
+  text-align: center;
+}
+#messages {
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid #444;
+  margin: 10px;
+  padding: 10px;
+}
+input, button {
+  padding: 8px;
+  margin: 5px;
+}
