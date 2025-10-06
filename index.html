@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>freely</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div id="login">
+    <h2>freely にログイン</h2>
+    <input id="username" placeholder="ユーザー名">
+    <button id="loginBtn">入室</button>
+  </div>
+
+  <div id="chat" style="display:none;">
+    <h2>freely チャット</h2>
+    <div id="messages"></div>
+    <input id="msgInput" placeholder="メッセージを入力...">
+    <button id="sendBtn">送信</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
