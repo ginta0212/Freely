@@ -1,5 +1,5 @@
-const SUPABASE_URL = "<<<ここにProject URL>>>";
-const SUPABASE_ANON_KEY = "<<<ここにanon key>>>";
+const SUPABASE_URL = "https://nergelpflnjacforslao.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5lcmdlbHBmbG5qYWNmb3JzbGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2ODk4OTgsImV4cCI6MjA3NTI2NTg5OH0.NeB2bD5PM6z8RtYRGqlc0QKXmUI1CSHKZtTFYRpIBGE";
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
