@@ -2,29 +2,33 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>freely</title>
+  <title>freely チャット</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div id="login">
-    <h2>freely にログイン</h2>
-    <input id="username" placeholder="ユーザー名">
-    <button id="loginBtn">入室</button>
-  </div>
 
-  <div id="chat" style="display:none;">
-    <h2>freely チャット</h2>
-    <div id="messages"></div>
-    <input id="msgInput" placeholder="メッセージを入力...">
-    <button id="sendBtn">送信</button>
-  </div>
+<!-- ログイン画面 -->
+<div id="login">
+  <h2>ログイン</h2>
+  <input id="email" type="email" placeholder="メールアドレス" />
+  <input id="password" type="password" placeholder="パスワード" />
+  <button id="loginBtn">ログイン / 新規登録</button>
+</div>
 
-  <script src="main.js"></script>
-</body>
-</html>
-<!-- Supabaseの公式スクリプトを先に読み込む -->
+<!-- チャット画面（最初は非表示） -->
+<div id="chat" style="display:none;">
+  <h2>freely チャット</h2>
+  <div id="messages"></div>
+  <input id="msgInput" type="text" placeholder="メッセージを入力" />
+  <button id="sendBtn">送信</button>
+  <button id="logoutBtn">ログアウト</button>
+</div>
+
+<!-- Supabaseの公式ライブラリ -->
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 
-<!-- そのあとに main.js を読み込む -->
+<!-- main.js を読み込む -->
 <script src="main.js"></script>
+
+</body>
+</html>
